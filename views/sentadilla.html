@@ -13,9 +13,40 @@
     />
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Wiki</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Team</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Ejercicios
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="/pose/sentadilla">Sentadilla</a></li>
+                <li><a class="dropdown-item" href="#">Lagartija</a></li>
+                <li><a class="dropdown-item" href="#">Abdominal</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <div class="container">
       <h1>Sentadilla!🤙</h1>
-      <div class="row d-flex">
+      <div class="row">
         <div>Teachable Machine Pose Model</div>
         <button type="button" onclick="init()">Start</button>
         <div class="align-self-center"><canvas id="canvas"></canvas></div>
@@ -43,8 +74,8 @@
           model = await tmPose.load(modelURL, metadataURL);
           maxPredictions = model.getTotalClasses();
 
-          const width = window.innerWidth - 120;
-          const height = window.innerHeight - 120;
+          const width = 400;
+          const height = 400;
           const flip = true; // whether to flip the webcam
           webcam = new tmPose.Webcam(width, height, flip); // width, height, flip
           await webcam.setup(); // request access to the webcam

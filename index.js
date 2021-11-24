@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const TeachableMachine = require("@sashido/teachablemachine-node");
@@ -27,6 +28,14 @@ const multerStorage = multer.diskStorage({
 
 const upload = multer({
   storage: multerStorage,
+});
+
+app.get("/inicio", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "inicio.html"))
+});
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "inicio.html"))
 });
 
 app.get("/formulario", (req, res) => {
