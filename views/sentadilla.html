@@ -15,10 +15,12 @@
   <body>
     <div class="container">
       <h1>Sentadilla!🤙</h1>
-      <div>Teachable Machine Pose Model</div>
-      <button type="button" onclick="init()">Start</button>
-      <div><canvas id="canvas"></canvas></div>
-      <div id="label-container"></div>
+      <div class="row d-flex">
+        <div>Teachable Machine Pose Model</div>
+        <button type="button" onclick="init()">Start</button>
+        <div class="align-self-center"><canvas id="canvas"></canvas></div>
+        <div id="label-container"></div>
+      </div>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -28,10 +30,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
       <script type="text/javascript">
-        // More API functions here:
-        // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/pose
-
-        // the link to your model provided by Teachable Machine export panel
         const URL = "https://teachablemachine.withgoogle.com/models/t-_64mU9F/";
         let model, webcam, ctx, labelContainer, maxPredictions;
 
@@ -45,18 +43,18 @@
           model = await tmPose.load(modelURL, metadataURL);
           maxPredictions = model.getTotalClasses();
 
-          // Convenience function to setup a webcam
-          const size = 200;
+          const width = window.innerWidth - 120;
+          const height = window.innerHeight - 120;
           const flip = true; // whether to flip the webcam
-          webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
+          webcam = new tmPose.Webcam(width, height, flip); // width, height, flip
           await webcam.setup(); // request access to the webcam
           await webcam.play();
           window.requestAnimationFrame(loop);
 
           // append/get elements to the DOM
           const canvas = document.getElementById("canvas");
-          canvas.width = size;
-          canvas.height = size;
+          canvas.width = width;
+          canvas.height = height;
           ctx = canvas.getContext("2d");
           labelContainer = document.getElementById("label-container");
           for (let i = 0; i < maxPredictions; i++) {

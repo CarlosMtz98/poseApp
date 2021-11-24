@@ -14,7 +14,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 //
-const prefix = "pose";
+const prefix = "/pose";
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public");
@@ -34,7 +34,7 @@ app.get("/formulario", (req, res) => {
 });
 
 app.get(`${prefix}/sentadilla`, (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "poseview.html"));
+  res.sendFile(path.join(__dirname, "views", "sentadilla.html"));
 })
 
 app.post("/modelo", upload.single("file"), (req, res) => {
