@@ -81,4 +81,5 @@ app.get("/image/classify", async (req, res) => {
     });
 });
 
-app.listen(8080, () => console.log("En línea"));
+const port = process.env.PORT || 8080;
+app.listen(port, () => console.log("En línea running on port:", port));
