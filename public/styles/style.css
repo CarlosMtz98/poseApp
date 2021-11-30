@@ -1,0 +1,11 @@
+.anchor{
+    color: black;
+    text-decoration: none;
+}
+
+.pose{
+    width: 200px;
+    height: 300px;
+    border: 1px solid #f4f4f4;
+    border-radius: 8%;
+}

@@ -33,6 +33,12 @@ const upload = multer({
 app.get("/inicio", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "inicio.html"))
 });
+app.get("/wiki", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "wiki.html"))
+});
+app.get("/team", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "team.html"))
+});
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "inicio.html"))
@@ -44,6 +50,12 @@ app.get("/formulario", (req, res) => {
 
 app.get(`${prefix}/sentadilla`, (req, res) => {
   res.sendFile(path.join(__dirname, "views", "sentadilla.html"));
+})
+app.get(`${prefix}/lagartija`, (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "lagartija.html"));
+})
+app.get(`${prefix}/abdominal`, (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "abdominal.html"));
 })
 
 app.post("/modelo", upload.single("file"), (req, res) => {
