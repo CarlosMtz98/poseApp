@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const TeachableMachine = require("@sashido/teachablemachine-node");
@@ -14,7 +15,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 //
-const prefix = "pose";
+const prefix = "/pose";
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public");
@@ -29,12 +30,32 @@ const upload = multer({
   storage: multerStorage,
 });
 
+app.get("/inicio", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "inicio.html"))
+});
+app.get("/wiki", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "wiki.html"))
+});
+app.get("/team", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "team.html"))
+});
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "inicio.html"))
+});
+
 app.get("/formulario", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "formulario.html"));
 });
 
 app.get(`${prefix}/sentadilla`, (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "poseview.html"));
+  res.sendFile(path.join(__dirname, "views", "sentadilla.html"));
+})
+app.get(`${prefix}/lagartija`, (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "lagartija.html"));
+})
+app.get(`${prefix}/abdominal`, (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "abdominal.html"));
 })
 
 app.post("/modelo", upload.single("file"), (req, res) => {
